@@ -23,7 +23,7 @@ X= df[features]
 y= df[target]
 # %%
 
-arvore = tree.DecisionTreeClassifier()
+arvore = tree.DecisionTreeClassifier(random_state=42)
 arvore.fit(X,y)
 
 # %%
@@ -36,3 +36,11 @@ tree.plot_tree( arvore,
                 feature_names=features,
                 filled=True
                 )
+
+# %% 
+arvore.predict([[0,1,1,1]])
+
+# %%
+probas = arvore.predict_proba([[0,1,1,1]])[0]
+
+pd.Series(probas, index=arvore.classes_)
