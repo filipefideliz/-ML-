@@ -15,3 +15,24 @@ df[filtro_arredondada & filtro_doce & filtro_suculenta & filtro_vermelha ]
 # %% Como podemos fazer a maquina aprender
 
 from sklearn import tree
+
+features = ['Arredondada','Suculenta','Vermelha','Doce']
+target = 'Fruta'
+
+X= df[features]
+y= df[target]
+# %%
+
+arvore = tree.DecisionTreeClassifier()
+arvore.fit(X,y)
+
+# %%
+import matplotlib.pyplot as plt
+
+plt.figure(dpi=700)
+
+tree.plot_tree( arvore,
+                class_names=arvore.classes_,
+                feature_names=features,
+                filled=True
+                )
